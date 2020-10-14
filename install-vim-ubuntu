@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# Installation script which setup up an Ubuntu Xenial machine to use this
+# vim configuration. 
+#
+# WARNING!!! 
+# * This has only been tested on a limited number of machines running 
+#   Ubuntu 18.04 64-bit.
+# * This is not a sophisticated installation script by any stretch 
+#   of the imagination. 
+# * I take no responsibility if this overwrites any configuration settings 
+#   or otherwise messes up your system. 
+#
+# Maintainer: Xsbd
+# Repository: https://github.com/Xsbd/vim-conf
+#
+
+CWD=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+echo "Installing required packages..."
+sudo apt-get install vim powerline
+
+echo "Linking to customized configuration..."
+if [ -f "~/.vim" ] ; then
+  mv -n ~/.vim ~/.vim.original
+fi
+if [ -f "~/.vimrc" ] ; then
+  mv -n ~/.vimrc ~/.vim.original
+fi
+dir="autoload bundle templates thesaurus"
+for i in $dir
+do
+  cp -fsr $(CWD)/$i ~/.vim/
+done
+ln -fs $(CWD)/vimrc ~/.vimrc
