@@ -1,12 +1,12 @@
 <h1 align='center'>My vim configuration</h1>
 
 ## Dependencies
->    powerline
+>    git
 
 ## Install
-In ubuntu run the install script from wherever you cloned this repository
+In Debian/ubuntu run the install script from wherever you cloned this repository
 ```bash
-./install-vim-ubuntu
+./install-vim-deb
 ```
 
 __OR__

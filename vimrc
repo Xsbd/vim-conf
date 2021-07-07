@@ -30,7 +30,7 @@ inoremap <M-m> <ESC>
 " map <ALT> + b for <BS> in insert mode
 inoremap <M-b> <BS>
 
-" Shortcut to rapidly toogle `set list`
+" Shortcut to rapidly toogle `set list` to show/hide formatting
 nmap <leader>l :set list!<CR>
 " Change symbols for tabstops and EOL
 set listchars=tab:▸\ ,eol:¬
@@ -46,7 +46,7 @@ execute pathogen#infect()
 
 " My Minimal Setup
 " Solarized Color Scheme
-" Powerline Status Bar
+" vim-airline Status Bar
 
 " }}}
 
@@ -75,16 +75,6 @@ endfunction   " }}}
 com! TT call Toggle_transparent()
 
 " }}}
-
-" Powerline Status Bar
-" --------------------
-" {{{
-
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-
-"  }}}
 
 " Spliting
 " --------

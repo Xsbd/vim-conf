@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Installation script which setup up an Ubuntu Xenial machine to use this
+# Installation script which setup up an Debain 11 machine to use this
 # vim configuration. 
 #
 # WARNING!!! 
 # * This has only been tested on a limited number of machines running 
-#   Ubuntu 18.04 64-bit.
+#   Debian 11 64-bit.
 # * This is not a sophisticated installation script by any stretch 
 #   of the imagination. 
 # * I take no responsibility if this overwrites any configuration settings 
@@ -16,9 +16,14 @@
 #
 
 CWD=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+DIR='templates autoload bundle thesaurus'
+GIT='git --git-dir='$PWD'/.git'
 
 echo "Installing required packages..."
-sudo apt-get install vim powerline
+sudo apt-get install vim git
+
+echo "Installing Plugins"
+$GIT submodule update --init --recursive
 
 echo "Linking to customized configuration..."
 if [ -f "~/.vim" ] ; then
@@ -27,9 +32,9 @@ fi
 if [ -f "~/.vimrc" ] ; then
   mv -n ~/.vimrc ~/.vim.original
 fi
-dir="autoload bundle templates thesaurus"
-for i in $dir
+mkdir ~/.vim
+for i in $DIR
 do
-  cp -fsr $(CWD)/$i ~/.vim/
+  cp -sir $CWD/$i ~/.vim/
 done
-ln -fs $(CWD)/vimrc ~/.vimrc
+ln -si $CWD/vimrc ~/.vimrc
